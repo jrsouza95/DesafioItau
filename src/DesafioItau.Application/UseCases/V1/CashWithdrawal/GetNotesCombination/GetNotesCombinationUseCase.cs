@@ -17,8 +17,12 @@ public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
 
     public IEnumerable<GetNotesCombinationResponse> GetNotesCombination(GetNotesCombinationRequest request)
     {
-        // obter todas as notas disponíveis
+        _logger.LogInformation("Init banknotes combination");
+
+        _logger.LogInformation("Getting avaliables banknotes");
         var avaliableNotes = _repository.Get();
+
+
 
         return new List<GetNotesCombinationResponse>();
     }
