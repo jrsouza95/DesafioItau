@@ -27,15 +27,19 @@ public class CashWithdrawalController : ControllerBase
     /// <param name="amount">Amount of money requested</param>
     /// <returns>Collection that contains the combination with the least amount of banknotes for the submitted Amount</returns>
     /// <response code="200">Success</response>
+    /// <response code="404">Not Found</response>
     /// <response code="400">Bussiness Exception</response>
     /// <response code="500">Due to server problems, it is not possible to get your data now</response>
     [ProducesResponseType(typeof(GetNotesCombinationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseBadRequest), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(NotFoundResult), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ResponseInternalServerError), StatusCodes.Status500InternalServerError)]
     [HttpGet("notes-combination/{amount}")]
     public IActionResult Get([FromRoute] decimal? amount)
     {
         GetNotesCombinationRequest request = new() { Amount = amount };
-        return Ok(_useCase.GetNotesCombination(request));
+        var response = _useCase.GetNotesCombination(request);
+
+        return response == null ? NotFound() : Ok(response);
     }
 }

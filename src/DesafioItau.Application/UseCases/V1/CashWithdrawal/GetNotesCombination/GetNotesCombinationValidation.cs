@@ -9,7 +9,7 @@ public class GetNotesCombinationValidation : IGetNotesCombinationUseCase
         _useCase = useCase;
     }
 
-    public IEnumerable<GetNotesCombinationResponse> GetNotesCombination(GetNotesCombinationRequest request)
+    public GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request)
     {
         ArgumentNullException.ThrowIfNull(nameof(request));
         ArgumentNullException.ThrowIfNull(nameof(request.Amount));

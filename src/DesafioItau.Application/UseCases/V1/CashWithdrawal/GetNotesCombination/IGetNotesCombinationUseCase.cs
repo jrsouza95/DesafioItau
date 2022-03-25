@@ -10,5 +10,5 @@ public interface IGetNotesCombinationUseCase
     /// </summary>
     /// <param name="request">The value of Withdrawal requested</param>
     /// <returns>Collection that contains the combination with the least amount of banknotes for the submitted request</returns>
-    IEnumerable<GetNotesCombinationResponse> GetNotesCombination(GetNotesCombinationRequest request);
+    GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request);
 }

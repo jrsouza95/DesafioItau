@@ -2,6 +2,11 @@
 
 public class GetNotesCombinationResponse
 {
+    public IEnumerable<NotesResponse> Notes { get; set; }
+}
+
+public class NotesResponse
+{
     public decimal NoteValue { get; set; }
-    public string Amount { get; set; }
+    public int Amount { get; set; }
 }

@@ -15,7 +15,7 @@ public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
         _logger = logger;
     }
 
-    public IEnumerable<GetNotesCombinationResponse> GetNotesCombination(GetNotesCombinationRequest request)
+    public GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request)
     {
         _logger.LogInformation("Init banknotes combination");
 
@@ -24,6 +24,6 @@ public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
 
 
 
-        return new List<GetNotesCombinationResponse>();
+        return new GetNotesCombinationResponse();
     }
 }
