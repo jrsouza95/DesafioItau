@@ -1,4 +1,5 @@
 ﻿using DesafioItau.Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
+using DesafioItau.Presentation.API.ExceptionHandler.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,9 +36,9 @@ public class CashWithdrawalController : ControllerBase
     [ProducesResponseType(typeof(ResponseBadRequest), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseInternalServerError), StatusCodes.Status500InternalServerError)]
     [HttpGet("notes-combination/{value}")]
-    public async Task<IActionResult> GetAsync([FromRoute] decimal? amount)
+    public IActionResult Get([FromRoute] decimal? amount)
     {
         GetNotesCombinationRequest request = new() { Amount = amount };
-        return Ok(await _useCase.GetNotesCombination(request));
+        return Ok(_useCase.GetNotesCombination(request));
     }
 }

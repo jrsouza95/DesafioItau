@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DesafioItau.Application\DesafioItau.Application.csproj" />
+    <ProjectReference Include="..\DesafioItau.Application\DesafioItau.Application.csproj" />
+    <ProjectReference Include="..\DesafioItau.Domain\DesafioItau.Domain.csproj" />
+    <ProjectReference Include="..\DesafioItau.Infra.Data\DesafioItau.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

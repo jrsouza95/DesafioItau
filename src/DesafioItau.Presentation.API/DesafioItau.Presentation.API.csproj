@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DesafioItau.Application\DesafioItau.Application.csproj" />
+    <ProjectReference Include="..\DesafioItau.Infra.IoC\DesafioItau.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

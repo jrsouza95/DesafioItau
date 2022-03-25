@@ -16,7 +16,7 @@ public static class DependencyInjector
     private static void InjectUseCases(IServiceCollection services)
     {
         services.AddScoped<IGetNotesCombinationUseCase, GetNotesCombinationUseCase>();
-        services.Decorate<IGetNotesCombinationUseCase, GetNotesCombinationValidationUseCase>();
+        services.Decorate<IGetNotesCombinationUseCase, GetNotesCombinationValidation>();
     }
 
     private static void InjectRepositories(IServiceCollection services)
