@@ -35,7 +35,7 @@ public class CashWithdrawalController : ControllerBase
     [ProducesResponseType(typeof(GetNotesCombinationResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseBadRequest), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ResponseInternalServerError), StatusCodes.Status500InternalServerError)]
-    [HttpGet("notes-combination/{value}")]
+    [HttpGet("notes-combination/{amount}")]
     public IActionResult Get([FromRoute] decimal? amount)
     {
         GetNotesCombinationRequest request = new() { Amount = amount };

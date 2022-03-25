@@ -2,13 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DesafioItau.Presentation.API.ExceptionHandler;
-
+namespace DesafioItau.Presentation.API.Config.ExceptionHandler;
+/// <summary>
+/// Configures a filter to intercept an exception and treat it globally and return the request
+/// </summary>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class ApiExceptionHandler : ExceptionFilterAttribute, IFilterMetadata
 {
     private readonly ILogger _logger;
 
+    /// <summary>
+    /// Class constructor
+    /// </summary>
+    /// <param name="logger">Logger instance</param>
     public ApiExceptionHandler(ILogger logger)
     {
         _logger = logger;
