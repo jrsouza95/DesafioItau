@@ -5,6 +5,7 @@ public class Banknote
     public Banknote(decimal value,
                     int amount)
     {
+        Id = Guid.NewGuid();
         Value = value;
         Amount = amount;
     }

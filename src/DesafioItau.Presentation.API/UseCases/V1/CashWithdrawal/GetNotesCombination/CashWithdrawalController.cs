@@ -1,6 +1,5 @@
 ﻿using DesafioItau.Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
 using DesafioItau.Presentation.API.ExceptionHandler.Responses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioItau.Presentation.API.UseCases.V1.CashWithdrawal.GetNotesCombination;
@@ -10,8 +9,6 @@ namespace DesafioItau.Presentation.API.UseCases.V1.CashWithdrawal.GetNotesCombin
 /// </summary>
 [Route("api/v{version:apiVersion}/withdrawal")]
 [ApiVersion("1.0")]
-[Authorize]
-[ValidateAntiForgeryToken]
 [ApiController]
 public class CashWithdrawalController : ControllerBase
 {
