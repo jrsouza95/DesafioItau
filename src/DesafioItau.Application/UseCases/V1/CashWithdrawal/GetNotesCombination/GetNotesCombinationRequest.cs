@@ -2,5 +2,10 @@
 
 public class GetNotesCombinationRequest
 {
-    public int? Amount { get; set; }
+    public GetNotesCombinationRequest(int? amount)
+    {
+        Amount = amount;
+    }
+
+    public int? Amount { get; }
 }

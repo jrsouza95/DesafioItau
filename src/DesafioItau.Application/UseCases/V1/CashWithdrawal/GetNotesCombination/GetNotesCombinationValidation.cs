@@ -11,8 +11,8 @@ public class GetNotesCombinationValidation : IGetNotesCombinationUseCase
 
     public GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request)
     {
-        ArgumentNullException.ThrowIfNull(nameof(request));
-        ArgumentNullException.ThrowIfNull(nameof(request.Amount));
+        if(request.Amount <= 0)
+            throw new ArgumentOutOfRangeException(nameof(request.Amount), "Must be greater than 0");
 
         return _useCase.GetNotesCombination(request);
     }

@@ -27,17 +27,14 @@ public class ApiExceptionHandler : ExceptionFilterAttribute, IFilterMetadata
     /// <param name="context">Exception context</param>
     public override void OnException(ExceptionContext context)
     {
-        if (context.Exception is ArgumentNullException)
-        {
-            ResponseBadRequest obj = new(context.Exception);
-            BuildResponse(context, obj);
-        }
+        ResponseError obj;
+        if (context.Exception is ArgumentNullException || context.Exception is ArgumentOutOfRangeException)
+            obj = new ResponseBadRequest(context.Exception);
 
         else
-        {
-            ResponseInternalServerError obj = new(context.Exception);
-            BuildResponse(context, obj);
-        }
+            obj = new ResponseInternalServerError(context.Exception);
+        
+        BuildResponse(context, obj);
 
         _logger.LogError(context.Exception, "An error occurred while executing the request");
     }

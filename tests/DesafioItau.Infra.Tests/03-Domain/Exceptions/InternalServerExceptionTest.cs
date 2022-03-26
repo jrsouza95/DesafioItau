@@ -19,7 +19,7 @@ public class InternalServerExceptionTest
     }
 
     [Test]
-    public void InternalServerException_Constructor_Should_Throw_Correctly()
+    public void InternalServerException_Should_Throw_Correctly()
     {
         Exception ex = new("ex base message");
         string message = "internal exception message";

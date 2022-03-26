@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="02-Application\" />
     <Folder Include="05-Data\" />
   </ItemGroup>
 

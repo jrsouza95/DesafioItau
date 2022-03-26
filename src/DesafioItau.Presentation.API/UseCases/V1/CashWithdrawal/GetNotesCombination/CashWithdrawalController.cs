@@ -37,7 +37,7 @@ public class CashWithdrawalController : ControllerBase
     [HttpGet("notes-combination/{amount}")]
     public IActionResult Get([FromRoute] int? amount)
     {
-        GetNotesCombinationRequest request = new() { Amount = amount };
+        GetNotesCombinationRequest request = new(amount);
         var response = _useCase.GetNotesCombination(request);
 
         return !response.BankNotes.Any()? NotFound() : Ok(response);
