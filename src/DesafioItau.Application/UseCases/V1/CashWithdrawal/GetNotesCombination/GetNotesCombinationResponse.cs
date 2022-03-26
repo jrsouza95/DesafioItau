@@ -2,11 +2,11 @@
 
 public class GetNotesCombinationResponse
 {
-    public IEnumerable<NotesResponse> Notes { get; set; }
+    public IEnumerable<BankNoteResponse> Notes { get; set; }
 }
 
-public class NotesResponse
+public class BankNoteResponse
 {
-    public decimal NoteValue { get; set; }
+    public int NoteValue { get; set; }
     public int Amount { get; set; }
 }

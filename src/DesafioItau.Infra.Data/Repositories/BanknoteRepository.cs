@@ -7,6 +7,8 @@ namespace DesafioItau.Infra.Data.Repositories;
 
 public class BanknoteRepository : IBanknoteRepository
 {
+    private readonly string _exceptionMessage = "Ops! It was not possible to complete this operation for now";
+
     public BanknoteRepository() { }
 
     public IEnumerable<Banknote> Get(decimal value)
@@ -17,7 +19,7 @@ public class BanknoteRepository : IBanknoteRepository
         }
         catch (Exception ex)
         {
-            throw new InternalServerException("Ops! It was not possible to complete this operation for now", ex);
+            throw new InternalServerException(_exceptionMessage, ex);
         }
     }
 
@@ -29,7 +31,7 @@ public class BanknoteRepository : IBanknoteRepository
         }
         catch (Exception ex)
         {
-            throw new InternalServerException("Ops! It was not possible to complete this operation for now", ex);
+            throw new InternalServerException(_exceptionMessage, ex);
         }
     }
 }

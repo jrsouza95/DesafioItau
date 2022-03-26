@@ -2,5 +2,5 @@
 
 public class GetNotesCombinationRequest
 {
-    public decimal? Amount { get; set; }
+    public int? Amount { get; set; }
 }

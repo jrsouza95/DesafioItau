@@ -14,13 +14,13 @@ public static class MockBanknoteData
             {
                 _mockData = new List<Banknote>()
                 {
-                    new (100.00m, 9999999),
-                    new (50.00m, 9999999),
-                    new (20.00m, 9999999),
-                    new (10.00m, 9999999),
-                    new (5.00m, 9999999),
-                    new (2.00m, 9999999),
-                    new (1.00m, 9999999)
+                    new (100),
+                    new (50),
+                    new (20),
+                    new (10),
+                    new (5),
+                    new (2),
+                    new (1)
                 };
             }
 

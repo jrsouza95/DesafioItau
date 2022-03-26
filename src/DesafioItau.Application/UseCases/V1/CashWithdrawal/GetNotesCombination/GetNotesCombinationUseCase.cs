@@ -1,4 +1,5 @@
 ﻿using DesafioItau.Domain.Interfaces;
+using DesafioItau.Domain.Models;
 using Microsoft.Extensions.Logging;
 
 namespace DesafioItau.Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
@@ -17,13 +18,29 @@ public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
 
     public GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request)
     {
-        _logger.LogInformation("Init banknotes combination");
+        var avaliableNotes = _repository.Get().OrderByDescending(x => x.Value);
+        
+        List<BankNoteResponse> notesCombination = new();
 
-        _logger.LogInformation("Getting avaliables banknotes");
-        var avaliableNotes = _repository.Get();
+        int amount = request.Amount.Value;
+        
+        foreach(var note in avaliableNotes)
+        {
+            if(amount >= note.Value)
+            {
+                BankNoteResponse bankNote = new()
+                {
+                    NoteValue = note.Value,
+                    Amount = amount / note.Value,
+                };
 
+                amount %= note.Value;
 
+                notesCombination.Add(bankNote);
+            }
+            else break;
+        }
 
-        return new GetNotesCombinationResponse();
+        return new GetNotesCombinationResponse() { Notes = notesCombination };
     }
 }

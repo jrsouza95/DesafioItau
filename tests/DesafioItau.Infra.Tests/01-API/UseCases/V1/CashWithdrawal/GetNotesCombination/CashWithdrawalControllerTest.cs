@@ -26,17 +26,17 @@ public class CashWithdrawalControllerTest
     {
         GetNotesCombinationResponse seed = new GetNotesCombinationResponse()
         {
-            Notes = new List<NotesResponse>()
+            Notes = new List<BankNoteResponse>()
             {
-                new NotesResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<decimal>()},
-                new NotesResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<decimal>()},
-                new NotesResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<decimal>()}
+                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()},
+                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()},
+                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()}
             }
         };
 
         _mockUseCase.Setup(_ => _.GetNotesCombination(It.IsAny<GetNotesCombinationRequest>())).Returns(seed);
 
-        decimal request = 3.5m;
+        int request = 35400;
         var result = _controller.Get(request);
 
         Assert.IsNotNull(result);
@@ -52,7 +52,7 @@ public class CashWithdrawalControllerTest
 
         _mockUseCase.Setup(_ => _.GetNotesCombination(It.IsAny<GetNotesCombinationRequest>())).Returns(seed);
 
-        decimal request = 2.5m;
+        int request = 253123;
         var result = _controller.Get(request);
 
         Assert.IsNotNull(result);

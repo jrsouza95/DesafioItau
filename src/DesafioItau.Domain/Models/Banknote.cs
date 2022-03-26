@@ -2,15 +2,12 @@
 
 public class Banknote
 {
-    public Banknote(decimal value,
-                    int amount)
+    public Banknote(int value)
     {
         Id = Guid.NewGuid();
         Value = value;
-        Amount = amount;
     }
 
     public Guid Id { get; private set; }
-    public decimal Value { get; private set; }
-    public int Amount { get; private set; }
+    public int Value { get; private set; }
 }
