@@ -40,6 +40,6 @@ public class CashWithdrawalController : ControllerBase
         GetNotesCombinationRequest request = new() { Amount = amount };
         var response = _useCase.GetNotesCombination(request);
 
-        return response == null ? NotFound() : Ok(response);
+        return !response.BankNotes.Any()? NotFound() : Ok(response);
     }
 }

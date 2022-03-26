@@ -24,15 +24,14 @@ public class CashWithdrawalControllerTest
     [Test]
     public void Get_ShouldReturn_Ok()
     {
-        GetNotesCombinationResponse seed = new GetNotesCombinationResponse()
+        List<BankNoteResponse> bankNotes = new()
         {
-            Notes = new List<BankNoteResponse>()
-            {
-                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()},
-                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()},
-                new BankNoteResponse(){ Amount = It.IsAny<int>(), NoteValue = It.IsAny<int>()}
-            }
+            new BankNoteResponse(It.IsAny<int>(), It.IsAny<int>()),
+            new BankNoteResponse(It.IsAny<int>(), It.IsAny<int>()),
+            new BankNoteResponse(It.IsAny<int>(), It.IsAny<int>())
         };
+
+        GetNotesCombinationResponse seed = new(bankNotes);
 
         _mockUseCase.Setup(_ => _.GetNotesCombination(It.IsAny<GetNotesCombinationRequest>())).Returns(seed);
 
@@ -48,7 +47,7 @@ public class CashWithdrawalControllerTest
     [Test]
     public void Get_ShouldReturn_NotFound()
     {
-        GetNotesCombinationResponse seed = null;
+        GetNotesCombinationResponse seed = new(new List<BankNoteResponse>());
 
         _mockUseCase.Setup(_ => _.GetNotesCombination(It.IsAny<GetNotesCombinationRequest>())).Returns(seed);
 

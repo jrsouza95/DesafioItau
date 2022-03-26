@@ -1,25 +1,20 @@
 ﻿using DesafioItau.Domain.Interfaces;
 using DesafioItau.Domain.Models;
-using Microsoft.Extensions.Logging;
 
 namespace DesafioItau.Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
 
 public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
 {
-    private readonly IBanknoteRepository _repository;
-    private readonly ILogger<GetNotesCombinationUseCase> _logger;
+    private readonly IBanknoteRepository _banknoteRepository;
 
-    public GetNotesCombinationUseCase(IBanknoteRepository repository,
-                                      ILogger<GetNotesCombinationUseCase> logger)
+    public GetNotesCombinationUseCase(IBanknoteRepository banknotesRepository)
     {
-        _repository = repository;
-        _logger = logger;
+        _banknoteRepository = banknotesRepository;
     }
 
     public GetNotesCombinationResponse GetNotesCombination(GetNotesCombinationRequest request)
     {
-        var avaliableNotes = _repository.Get().OrderByDescending(x => x.Value);
-        
+        IEnumerable<Banknote> avaliableNotes = _banknoteRepository.Get().OrderByDescending(x => x.Value);
         List<BankNoteResponse> notesCombination = new();
 
         int amount = request.Amount.Value;
@@ -28,19 +23,15 @@ public class GetNotesCombinationUseCase : IGetNotesCombinationUseCase
         {
             if(amount >= note.Value)
             {
-                BankNoteResponse bankNote = new()
-                {
-                    NoteValue = note.Value,
-                    Amount = amount / note.Value,
-                };
+                int noteAmount = amount / note.Value;
+                
+                BankNoteResponse bankNote = new(note.Value, noteAmount);
 
                 amount %= note.Value;
 
                 notesCombination.Add(bankNote);
             }
-            else break;
         }
-
-        return new GetNotesCombinationResponse() { Notes = notesCombination };
+        return new GetNotesCombinationResponse(notesCombination);
     }
 }

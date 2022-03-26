@@ -2,11 +2,23 @@
 
 public class GetNotesCombinationResponse
 {
-    public IEnumerable<BankNoteResponse> Notes { get; set; }
+    public GetNotesCombinationResponse(List<BankNoteResponse> notesCombination)
+    {
+        BankNotes = notesCombination;
+    }
+
+    public IEnumerable<BankNoteResponse> BankNotes { get; set; }
 }
 
 public class BankNoteResponse
 {
-    public int NoteValue { get; set; }
+    public BankNoteResponse(int noteValue,
+                            int amount)
+    {
+        NoteValue = noteValue.ToString("C2");
+        Amount = amount;    
+    }
+
+    public string NoteValue { get; set; }
     public int Amount { get; set; }
 }
