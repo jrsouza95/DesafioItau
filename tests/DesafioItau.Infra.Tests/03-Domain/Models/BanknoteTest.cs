@@ -1,6 +1,7 @@
 ﻿using DesafioItau.Domain.Models;
 using NUnit.Framework;
 using System;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._03_Domain.Models
 {
@@ -12,9 +13,9 @@ namespace DesafioItau.Infra.Tests._03_Domain.Models
             int value = 75;
 
             Banknote banknote = new(value);
-
-            Assert.True(Guid.Empty != banknote.Id);
-            Assert.AreEqual(value, banknote.Value);
+            
+            banknote.Id.Should().NotBeEmpty();
+            banknote.Value.Should().Be(value);
         }
     }
 }

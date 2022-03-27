@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._02_Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
 
@@ -50,7 +51,7 @@ public class GetNotesCombinationValidationTest
         GetNotesCombinationRequest request = new(amount);
 
         var ex = Assert.Throws<ArgumentOutOfRangeException>(() => _GetNotesCombinationValidation.GetNotesCombination(request));
-        
-        Assert.AreEqual(ex.Message, "Must be greater than 0 (Parameter 'Amount')");
+
+        ex.Message.Should().Be("Must be greater than 0 (Parameter 'Amount')");
     }
 }

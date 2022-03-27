@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._01_API.UseCases.V1.CashWithdrawal.GetNotesCombination;
 
@@ -38,10 +39,11 @@ public class CashWithdrawalControllerTest
         int request = 35400;
         var result = _controller.Get(request);
 
-        Assert.IsNotNull(result);
-        Assert.IsInstanceOf<OkObjectResult>(result);
-        Assert.AreEqual(StatusCodes.Status200OK, ((OkObjectResult)result).StatusCode);
-        Assert.AreEqual(seed, ((OkObjectResult)result).Value);
+
+        result.Should().NotBeNull();
+        result.Should().BeOfType<OkObjectResult>();
+        ((OkObjectResult)result).StatusCode.Should().Be(StatusCodes.Status200OK);
+        ((OkObjectResult)result).Value.Should().Be(seed);
     }
 
     [Test]
@@ -54,8 +56,8 @@ public class CashWithdrawalControllerTest
         int request = 253123;
         var result = _controller.Get(request);
 
-        Assert.IsNotNull(result);
-        Assert.IsInstanceOf<NotFoundResult>(result);
-        Assert.AreEqual(StatusCodes.Status404NotFound, ((NotFoundResult)result).StatusCode);
+        result.Should().NotBeNull();
+        result.Should().BeOfType<NotFoundResult>();
+        ((NotFoundResult)result).StatusCode.Should().Be(StatusCodes.Status404NotFound);
     }
 }

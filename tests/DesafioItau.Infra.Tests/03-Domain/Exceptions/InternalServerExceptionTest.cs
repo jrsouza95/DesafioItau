@@ -1,6 +1,7 @@
 ﻿using DesafioItau.Domain.Exceptions;
 using NUnit.Framework;
 using System;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._03_Domain.Exceptions;
 
@@ -14,8 +15,8 @@ public class InternalServerExceptionTest
 
         InternalServerException internalServerException = new(message, ex);
 
-        Assert.AreEqual(message, internalServerException.Message);
-        Assert.AreEqual(ex, internalServerException.InnerException);
+        internalServerException.Message.Should().Be(message);
+        internalServerException.InnerException.Should().BeSameAs(ex);
     }
 
     [Test]
@@ -26,7 +27,7 @@ public class InternalServerExceptionTest
 
         var throws = Assert.Throws<InternalServerException>(() => throw new InternalServerException(message, ex));
 
-        Assert.AreEqual(message, throws.Message);
-        Assert.AreEqual(ex, throws.InnerException);
+        throws.Message.Should().Be(message);
+        throws.InnerException.Should().BeSameAs(throws.InnerException);
     }
 }

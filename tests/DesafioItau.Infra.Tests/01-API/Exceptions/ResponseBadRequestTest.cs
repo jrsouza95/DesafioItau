@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using System;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._01_API.Exceptions;
 
@@ -15,7 +16,7 @@ public class ResponseBadRequestTest
 
         ResponseBadRequest responseInternalServerError = new(exception);
 
-        Assert.AreEqual("bad request error test message", responseInternalServerError.Errors);
-        Assert.AreEqual(StatusCodes.Status400BadRequest, responseInternalServerError.HttpCode);
+        responseInternalServerError.Errors.Should().Be("bad request error test message");
+        responseInternalServerError.HttpCode.Should().Be(StatusCodes.Status400BadRequest);
     }
 }

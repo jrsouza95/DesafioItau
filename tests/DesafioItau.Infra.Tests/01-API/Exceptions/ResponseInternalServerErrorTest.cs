@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using System;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._01_API.Exceptions;
 
@@ -15,7 +16,7 @@ public class ResponseInternalServerErrorTest
 
         ResponseInternalServerError responseInternalServerError = new(exception);
 
-        Assert.AreEqual("internal error test message", responseInternalServerError.Errors);
-        Assert.AreEqual(StatusCodes.Status500InternalServerError, responseInternalServerError.HttpCode);
+        responseInternalServerError.Errors.Should().Be("internal error test message");
+        responseInternalServerError.HttpCode.Should().Be(StatusCodes.Status500InternalServerError);
     }
 }

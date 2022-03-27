@@ -1,6 +1,7 @@
 ﻿using DesafioItau.Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
 using NUnit.Framework;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace DesafioItau.Infra.Tests._02_Application.UseCases.V1.CashWithdrawal.GetNotesCombination;
 
@@ -19,6 +20,6 @@ public class GetNotesCombinationResponseTest
 
         GetNotesCombinationResponse request = new(bankNotes);
 
-        Assert.AreEqual(bankNotes, request.BankNotes);
+        request.BankNotes.Should().BeSameAs(bankNotes);
     }
 }
